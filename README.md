@@ -1,56 +1,72 @@
-Documentação do Recomendador de Filmes API
-Visão Geral
-Esta API permite aos usuários obter recomendações de filmes com base em suas preferências, utilizando dados da API TMDB (The Movie Database).
+# 📽️ Documentação do Recomendador de Filmes API
 
-Requisitos
-Java 17+
+## 📌 Visão Geral
 
-Maven 3.8+
+Esta API permite aos usuários obter **recomendações de filmes** com base em suas preferências, utilizando dados da [TMDB (The Movie Database)](https://www.themoviedb.org/).
 
-Chave de API TMDB válida
+---
 
-Configuração
-Clone o repositório
+## ✅ Requisitos
 
-Configure sua chave da API TMDB no arquivo application.properties:
+- Java 17+
+- Maven 3.8+
+- Chave de API TMDB válida
 
-properties
+---
+
+## ⚙️ Configuração
+
+1. **Clone o repositório**
+2. **Configure sua chave da API TMDB** no arquivo `application.properties`:
+
+```properties
 tmdb.api.key=sua_chave_aqui
 tmdb.api.url=https://api.themoviedb.org/3
-Execute a aplicação:
+```
 
-bash
+3. **Execute a aplicação:**
+
+```bash
 mvn spring-boot:run
-Rotas da API
-1. Salvar Preferências do Usuário
-Método: POST
+```
 
-Endpoint: /api/movies/preferences
+---
 
-Descrição: Armazena as preferências do usuário para recomendações futuras
+## 🔁 Rotas da API
 
-Corpo da Requisição:
+### 1. 🔐 Salvar Preferências do Usuário
 
-json
+- **Método:** `POST`  
+- **Endpoint:** `/api/movies/preferences`  
+- **Descrição:** Armazena as preferências do usuário para recomendações futuras
+
+#### Corpo da Requisição:
+
+```json
 {
   "genre": "28",
   "year": 2023,
   "minRating": 7.5
 }
-Resposta de Sucesso:
+```
 
-json
+#### Resposta de Sucesso:
+
+```json
 "Preferências salvas com sucesso"
-2. Listar Todas as Preferências
-Método: GET
+```
 
-Endpoint: /api/movies/preferences
+---
 
-Descrição: Retorna todas as preferências armazenadas
+### 2. 📋 Listar Todas as Preferências
 
-Resposta de Sucesso:
+- **Método:** `GET`  
+- **Endpoint:** `/api/movies/preferences`  
+- **Descrição:** Retorna todas as preferências armazenadas
 
-json
+#### Resposta de Sucesso:
+
+```json
 [
   {
     "genre": "28",
@@ -58,24 +74,29 @@ json
     "minRating": 7.5
   }
 ]
-3. Obter Recomendações de Filmes
-Método: POST
+```
 
-Endpoint: /api/movies/recommendations
+---
 
-Descrição: Retorna filmes recomendados com base nas preferências
+### 3. 🎯 Obter Recomendações de Filmes
 
-Corpo da Requisição:
+- **Método:** `POST`  
+- **Endpoint:** `/api/movies/recommendations`  
+- **Descrição:** Retorna filmes recomendados com base nas preferências
 
-json
+#### Corpo da Requisição:
+
+```json
 {
   "genre": "28",
   "year": 2023,
   "minRating": 7.5
 }
-Resposta de Sucesso:
+```
 
-json
+#### Resposta de Sucesso:
+
+```json
 [
   {
     "id": 575264,
@@ -86,65 +107,65 @@ json
     "poster_path": "/NNxYkU70HPurnNCSiCjYAmacwm.jpg"
   }
 ]
-4. Informações do Projeto
-Método: GET
+```
 
-Endpoint: /api/movies/sobre
+---
 
-Descrição: Retorna informações sobre o projeto e desenvolvedores
+### 4. ℹ️ Informações do Projeto
 
-Resposta de Sucesso:
+- **Método:** `GET`  
+- **Endpoint:** `/api/movies/sobre`  
+- **Descrição:** Retorna informações sobre o projeto e desenvolvedores
 
-json
+#### Resposta de Sucesso:
+
+```json
 {
   "integrantes": ["Davi Carlos"],
   "nome_projeto": "Recomendador de Filmes",
   "versao": "1.0"
 }
-Modelos de Dados
-UserPreferences
-Campo	Tipo	Descrição
-genre	String	ID do gênero preferido (ex: "28" para Ação)
-year	Integer	Ano de lançamento preferido
-minRating	Double	Avaliação mínima desejada (0-10)
-Movie
-Campo	Tipo	Descrição
-id	int	ID do filme na TMDB
-title	String	Título do filme
-overview	String	Sinopse do filme
-release_date	String	Data de lançamento (YYYY-MM-DD)
-vote_average	double	Média de avaliações (0-10)
-poster_path	String	Caminho parcial para o pôster
-Exemplos de Uso
-Obter recomendações para filmes de ação de 2023:
+```
 
-bash
-curl -X POST "http://localhost:8000/api/movies/recommendations" \
--H "Content-Type: application/json" \
--d '{"genre":"28","year":2023,"minRating":7.0}'
-Salvar preferências do usuário:
+---
 
-bash
-curl -X POST "http://localhost:8000/api/movies/preferences" \
--H "Content-Type: application/json" \
--d '{"genre":"18","year":2022,"minRating":8.0}'
-Gêneros de Filmes (IDs TMDB)
+## 📦 Modelos de Dados
+
+### 🎯 `UserPreferences`
+
+| Campo      | Tipo     | Descrição                                  |
+|------------|----------|--------------------------------------------|
+| genre      | String   | ID do gênero preferido (ex: `"28"` para Ação) |
+| year       | Integer  | Ano de lançamento preferido                |
+| minRating  | Double   | Avaliação mínima desejada (0-10)           |
+
+### 🎬 `Movie`
+
+| Campo        | Tipo    | Descrição                                   |
+|--------------|---------|---------------------------------------------|
+| id           | int     | ID do filme na TMDB                         |
+| title        | String  | Título do filme                             |
+| overview     | String  | Sinopse do filme                            |
+| release_date | String  | Data de lançamento (YYYY-MM-DD)             |
+| vote_average | double  | Média de avaliações (0-10)                  |
+| poster_path  | String  | Caminho parcial para o pôster               |
+
+---
+
+## 🎭 Gêneros de Filmes (IDs TMDB)
+
 Alguns IDs de gêneros comuns:
 
-28: Ação
+- `28`: Ação  
+- `12`: Aventura  
+- `16`: Animação  
+- `35`: Comédia  
+- `18`: Drama  
+- `27`: Terror  
+- `10749`: Romance  
+- `878`: Ficção Científica  
 
-12: Aventura
+Para a lista completa de gêneros, consulte a [documentação oficial da TMDB](https://developer.themoviedb.org/docs).
 
-16: Animação
-
-35: Comédia
-
-18: Drama
-
-27: Terror
-
-10749: Romance
-
-878: Ficção Científica
-
-Consulte a documentação da TMDB para a lista completa de gêneros.
+---
+```
