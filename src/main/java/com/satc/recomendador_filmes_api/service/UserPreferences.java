@@ -1,34 +1,16 @@
 package com.satc.recomendador_filmes_api.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserPreferences {
-    private String userId;
-    private List<String> favoriteGenres;
-    private int minRating;
-
-    // Getters e Setters
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public List<String> getFavoriteGenres() {
-        return favoriteGenres;
-    }
-
-    public void setFavoriteGenres(List<String> favoriteGenres) {
-        this.favoriteGenres = favoriteGenres;
-    }
-
-    public int getMinRating() {
-        return minRating;
-    }
-
-    public void setMinRating(int minRating) {
-        this.minRating = minRating;
-    }
+    private String genre;
+    private Integer year;
+    private Double minRating;
+    public String getGenre() { return genre; }
+    public void setGenre(String genre) { this.genre = genre; }
+    public Integer getYear() { return year; }
+    public void setYear(Integer year) { this.year = year; }
+    public Double getMinRating() { return minRating; }
+    public void setMinRating(Double minRating) { this.minRating = minRating; }
 }
