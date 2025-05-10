@@ -24,14 +24,6 @@ tmdb.api.key=sua_chave_aqui
 tmdb.api.url=https://api.themoviedb.org/3
 ```
 
-3. **Execute a aplicação:**
-
-```bash
-mvn spring-boot:run
-```
-
----
-
 ## 🔁 Rotas da API
 
 ### 1. 🔐 Salvar Preferências do Usuário
